@@ -6,7 +6,6 @@ using namespace std;
 class Essentials
 {
 private:
-
     float mask_price = 3.5;
     float sanitizer_price = 1.5;
     float gloves_price = 2.5;
@@ -90,7 +89,7 @@ void gui(int input, Essentials p1)
     cout << endl;
     cout << "           Enter option number : ";
     cin >> input;
-    user_in(input,p1);
+    user_in(input, p1);
 }
 void user_in(int &input, Essentials p1)
 {
@@ -127,7 +126,7 @@ void ask_the_user(int input, Essentials p1)
     cin >> temp;
     if (temp == 'Y' || temp == 'y')
     {
-        gui(input,p1);
+        gui(input, p1);
     }
     else
     {
@@ -167,14 +166,14 @@ void compare(int array1[3], int array2[3])
                 flag = true;
 
     //test
-    if (flag == true)
-    {
-        cout << "array1 is greater than array 2" << endl;
-    }
-    else
-    {
-        cout << "array2 is greater than array 1" << endl;
-    }
+    // if (flag == true)
+    // {
+    //     cout << "array1 is greater than array 2" << endl;
+    // }
+    // else
+    // {
+    //     cout << "array2 is greater than array 1" << endl;
+    // }
 
     // return flag;
 }
@@ -195,14 +194,14 @@ void update_date()
 }
 void first_time(int input, Essentials p1)
 {
-    
+
     ifstream ifile;
     ifile.open("data.txt");
     if (ifile)
     {
         // gui(input, p1);
         p1.flag = false;
-        critical_warning(input,p1);
+        critical_warning(input, p1);
     }
     else
     {
@@ -215,8 +214,7 @@ void first_time(int input, Essentials p1)
         o_file << "0 0 0";
         o_file.close();
         p1.flag = true;
-        p1.getdata(p1); 
-         
+        p1.getdata(p1);
     }
 }
 void critical_warning(int input, Essentials p1)
@@ -230,27 +228,26 @@ void critical_warning(int input, Essentials p1)
     if (temp1 < critical1 || temp2 < critical2 || temp3 < critical3)
     {
         cout << "looks like you are running low on supply. please check stock & resupply" << endl;
-        ask_the_user(input,p1);
+        ask_the_user(input, p1);
     }
     else
     {
-        gui(input,p1);
+        gui(input, p1);
     }
-    
 }
 void exit_critical_warning()
 {
     int critical1 = 10, critical2 = 50, critical3 = 10;
-        ifstream ifile;
-        ifile.open("data.txt");
-        int temp1, temp2, temp3;
-        ifile >> temp1 >> temp2 >> temp3;
-        ifile.close();
-        if (temp1 < critical1 || temp2 < critical2 || temp3 < critical3)
-        {
-            cout << "looks like you are running low on supply. please check stock & resupply" << endl;
-        }
-        exit(0);
+    ifstream ifile;
+    ifile.open("data.txt");
+    int temp1, temp2, temp3;
+    ifile >> temp1 >> temp2 >> temp3;
+    ifile.close();
+    if (temp1 < critical1 || temp2 < critical2 || temp3 < critical3)
+    {
+        cout << "looks like you are running low on supply. please check stock & resupply" << endl;
+    }
+    exit(0);
 }
 //////////////////////////////Class function/////////////////////////////////////
 void Essentials::stock_check(Essentials p1)
@@ -261,11 +258,11 @@ void Essentials::stock_check(Essentials p1)
     system("clear");
     cout << "\tRemaining stock:" << endl;
     starline('=');
-    cout << "\tMask : " << total_mask << endl;
+    cout << "\tMask : " << total_mask << " piece" << endl;
     starline();
-    cout << "\tsanitizer : " << total_sanitizer << endl;
+    cout << "\tsanitizer (ml): " << total_sanitizer << " ml" << endl;
     starline();
-    cout << "\tGolves : " << total_gloves << endl;
+    cout << "\tGolves : " << total_gloves << " piece" << endl;
     starline('=');
     ifile.close();
     ask_the_user(input, p1);
@@ -275,11 +272,11 @@ void Essentials::getdata(Essentials p1)
 {
     system("clear");
     starline('=');
-    cout << "\t\t\t\tWELCOME"<< endl;
+    cout << "\t\t\t\tWELCOME" << endl;
     starline();
     cout << "Enter Mask: ";
     cin >> mask;
-    cout << "Enter Sanitizer: ";
+    cout << "Enter Sanitizer(ml): ";
     cin >> sanitizer;
     cout << "Enter Gloves: ";
     cin >> gloves;
@@ -296,9 +293,9 @@ void Essentials::getdata(Essentials p1)
     ofile.close();
     if (flag == true)
     {
-        gui(input,p1);
+        gui(input, p1);
     }
-    
+
     stock_check(p1);
 }
 
@@ -306,11 +303,11 @@ void Essentials::family_usage(Essentials p1)
 {
     cout << "Enter the ammount of mask you have used today : ";
     cin >> mask;
-    cout << "Enter the ammount of sanitizer you have used today : ";
+    cout << "Enter the ammount of sanitizer you have used today(ml) : ";
     cin >> sanitizer;
     cout << "Enter the ammount of gloves you have used today : ";
     cin >> gloves;
-    //input total    
+    //input total
     ifstream ifile;
     ifile.open(FILE);
     ifile >> total_mask >> total_sanitizer >> total_gloves;
@@ -365,11 +362,14 @@ void Essentials::list_expense(Essentials p1)
     starline('=');
     cout << "\tTotal cost till now: " << endl;
     starline('=');
-    cout << "\t\tMask : " << cost_total_mask <<" Taka"<< "(used " << c_m << " mask)"<< endl;
+    cout << "\t\tMask : " << cost_total_mask << " Taka"
+         << "(used " << c_m << " mask)" << endl;
     starline();
-    cout << "\t\tSanitizer : " << cost_total_sanitizer << " Taka" << "(used " << c_s << " sanitizer)"<< endl;
+    cout << "\t\tSanitizer : " << cost_total_sanitizer << " Taka"
+         << "(used " << c_s << " ml sanitizer)" << endl;
     starline();
-    cout << "\t\tGloves : " << cost_total_gloves <<" Taka" << "(used " << c_g << " gloves)" <<endl;
+    cout << "\t\tGloves : " << cost_total_gloves << " Taka"
+         << "(used " << c_g << " gloves)" << endl;
     starline('=');
     ask_the_user(input, p1);
 }
