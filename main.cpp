@@ -1,3 +1,5 @@
+//created by MD. AL - MOMIN MOSTAFA
+
 #include <bits/stdc++.h>
 #include "split.h"
 #define BUF_LEN 256
